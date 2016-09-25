@@ -35,6 +35,9 @@ echo -e "\e[49m";
 if[ uname -eq 'Linux' ]; then
     sudo rm -Rf /var/cache/*;
     sudo rm -Rf /var/log/*;
+    su -c 'sync;echo 1 > /proc/sys/vm/drop_caches';
+    su -c 'sudo sync;echo 2 > /proc/sys/vm/drop_caches';
+    su -c 'sudo sync;echo 3 > /proc/sys/vm/drop_caches;swapoff -a;swapon -a';
 fi
     
 if[ uname -eq 'Darwin' ]; then
